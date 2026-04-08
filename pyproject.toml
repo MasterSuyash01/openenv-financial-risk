@@ -13,5 +13,8 @@ dependencies = [
     "openenv-core"
 ]
 
+[project.scripts]
+server = "server.app:main"
+
 [tool.openenv]
 entrypoint = "my_env.env:FinancialEnv"
