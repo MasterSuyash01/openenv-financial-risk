@@ -65,7 +65,10 @@ def get_action(client, obs):
     try:
         res = client.chat.completions.create(
             model=MODEL_NAME,
-            messages=[{"role": "user", "content": build_prompt(obs)}],
+            messages=[
+                {"role": "system", "content": "You are a financial fraud detection agent."},
+                {"role": "user", "content": build_prompt(obs)}
+            ],
             temperature=TEMPERATURE,
             max_tokens=MAX_TOKENS,
         )
@@ -112,12 +115,14 @@ async def run_task(task_name):
             rewards.append(reward)
             steps = step
 
-            log_step(step, str(action), reward, done, None)
+            action_str = f"{action.action_type}:{action.content}"
+            log_step(step, action_str, reward, done, None)
 
             if done:
                 break
 
-        score = max(0.0, min(1.0, sum(rewards) / 2.0))
+        score = sum(rewards)
+        score = max(0.0, min(1.0, score))
         success = score >= SUCCESS_THRESHOLD
 
     finally:
