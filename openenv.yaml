@@ -1,0 +1,10 @@
+name: financial-compliance-env
+description: Multi-step fraud risk analysis environment
+version: 1.0
+
+entrypoint: my_env.env:FinancialEnv
+
+tasks:
+  - easy
+  - medium
+  - hard
