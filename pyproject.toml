@@ -1,0 +1,17 @@
+[project]
+name = "financial-openenv"
+version = "0.1.0"
+description = "Financial fraud detection OpenEnv environment"
+authors = [
+    { name = "Suyash Srivastav" }
+]
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "pydantic",
+    "openai",
+    "openenv-core"
+]
+
+[tool.openenv]
+entrypoint = "my_env.env:FinancialEnv"
